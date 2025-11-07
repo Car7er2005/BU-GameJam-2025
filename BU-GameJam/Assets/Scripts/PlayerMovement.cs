@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector2 boxSize;             // Size of the box for ground detection
     public float castDist;              // Distance for the boxcast
-    public bool grounded;               // To check if the player is grounded
 
     public InputAction playerControls;  // Input action for player controls
 
@@ -37,6 +36,15 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()  // Called at a fixed interval for physics updates
     {        
         rb.linearVelocity = new Vector2(moveDirection.x * speed, rb.linearVelocityY);   // Set horizontal velocity based on input
+
+        if (isGrounded())
+        {
+            rb.gravityScale = 0f;   // Disable gravity when grounded (to stop sliding on slopes)
+        }
+        else
+        {
+            rb.gravityScale = 1f;   // Enable gravity when in the air
+        }
     }
     
     public bool isGrounded()    // Check if the player is grounded using a boxcast
@@ -59,11 +67,12 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed && isGrounded())
         {
             rb.AddForce(new Vector2(0f, JumpPower), ForceMode2D.Impulse);
-        }
+        }/*
         else
         {
             Debug.Log("Jump not performed or player not grounded.");
         }
+        */
 
         /* // if we want variable jump height (hold to jump higher)
         if (context.canceled && rb.linearVelocity.y > 0f)
