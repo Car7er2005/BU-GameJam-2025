@@ -3,69 +3,26 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    Transform cam;
-    Vector3 camStartPos;
-    float dist;
-
-    GameObject[] backgrounds;
-    Material[] mats;
-    float[] backSpeed;
-
-    float farthestBack;
-
-    [UnityEngine.Range(0f, 1f)]
-    public float parallaxSpeed;
+    private float startPos, length;
+    public GameObject cam;
+    public float parallaxEffect;
 
     void Start()
     {
-        cam = Camera.main.transform;
-        camStartPos = cam.position;
-
-        int backCount = transform.childCount;
-        mats = new Material[backCount];
-        backSpeed = new float[backCount];
-        backgrounds = new GameObject[backCount];
-
-        for(int i = 0;i<backCount; i++)
-        {
-            backgrounds[i] = transform.GetChild(i).gameObject;
-            mats[i] = backgrounds[i].GetComponent<Renderer>().material;
-            
-        }
-        BackSpeedCalc(backCount);
+        startPos = transform.position.x;
+        length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
-    void BackSpeedCalc(int backcount)
+    void FixedUpdate()
     {
-        for (int i = 0; i < backcount; i++)     //find furthest back
-        {
-            if ((backgrounds[i].transform.position.z - cam.position.z) > farthestBack)
-            {
-                farthestBack = backgrounds[i].transform.position.z - cam.position.z;
-            }
-        }
+        // calculate the distance the camera has moved multiplied by the parallax effect
+        float dist = cam.transform.position.x * parallaxEffect;
+        float movement = cam.transform.position.x * (1 - parallaxEffect);
 
-        for (int i = 0; i < backcount; i++)     //calculate speed based on distance from camera
-        {
-            backSpeed[i] = 1 - ((backgrounds[i].transform.position.z - cam.position.z) / farthestBack);
-        }
-    }
+        transform.position = new Vector3(startPos + dist, transform.position.y, transform.position.z);
 
-    private void LateUpdate()
-    {
-        float distance = cam.position.x - camStartPos.x;
-        transform.position = new Vector3(cam.position.x, transform.position.y, 0);
-
-        for(int i = 0; i < backgrounds.Length; i++)
-        {
-            float parallax = distance * backSpeed[i] * parallaxSpeed;
-            Vector3 bgTargetPos = new Vector3(backgrounds[i].transform.position.x + parallax, backgrounds[i].transform.position.y, backgrounds[i].transform.position.z);
-            backgrounds[i].transform.position = bgTargetPos;
-
-            /*
-             * float speed = backSpeed[i] * parallaxSpeed;
-             * mat[i].SetTextureOffset("_MainTex", new Vector2(distance * speed, 0));
-             */
-        }
+        // if the background has reached the end of its length, ajust its position for infinite scrolling
+        if (movement > startPos + length) startPos += length;
+        else if (movement < startPos - length) startPos -= length;
     }
 }

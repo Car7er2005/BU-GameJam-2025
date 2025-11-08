@@ -5,8 +5,9 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;             // Reference to the Rigidbody2D component
     public LayerMask groundLayer;       // LayerMask to identify ground objects
-
-    private float speed = 5f, horizontal, JumpPower = 5f;   // Movement speed and jump power
+    
+    [SerializeField] private float speed = 5f, JumpPower = 50f, gravity = 2f;
+    private float horizontal;    // Movement speed and jump power
     private bool isFacingRight = true;  // To track the player's facing direction
 
     public Vector2 boxSize;             // Size of the box for ground detection
@@ -39,11 +40,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded())
         {
-            rb.gravityScale = 0f;   // Disable gravity when grounded (to stop sliding on slopes)
+            rb.gravityScale = gravity;   // Disable gravity when grounded (to stop sliding on slopes)
         }
         else
         {
-            rb.gravityScale = 1f;   // Enable gravity when in the air
+            rb.gravityScale = gravity;   // Enable gravity when in the air
         }
     }
     

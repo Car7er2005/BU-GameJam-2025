@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: 1Sky
+    uniqueID: 1596987715
+    locked: 0
+  - name: 2Trees
+    uniqueID: 228495571
+    locked: 0
+  - name: 3Walls
+    uniqueID: 3037064453
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
