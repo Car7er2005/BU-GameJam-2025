@@ -6798,6 +6798,8 @@ GameObject:
   - component: {fileID: 1855543485}
   - component: {fileID: 1855543490}
   - component: {fileID: 1855543491}
+  - component: {fileID: 1855543493}
+  - component: {fileID: 1855543492}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6822,7 +6824,7 @@ MonoBehaviour:
     m_Bits: 64
   speed: 5
   JumpPower: 5
-  gravity: 5
+  animator: {fileID: 1855543492}
   boxSize: {x: 0.6, y: 0.1}
   castDist: 0.02
   playerControls:
@@ -7086,6 +7088,44 @@ CapsuleCollider2D:
   m_Offset: {x: -0.015000001, y: 0.11}
   m_Size: {x: 0.18, y: 0.22}
   m_Direction: 0
+--- !u!95 &1855543492
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855543484}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fb50560366b67ea4bae745fb41991412, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!111 &1855543493
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855543484}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1 &1898632050
 GameObject:
   m_ObjectHideFlags: 0
