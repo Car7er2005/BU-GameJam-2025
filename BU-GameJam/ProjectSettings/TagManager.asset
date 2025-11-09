@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: 3Walls
     uniqueID: 3037064453
+    locked: 0
+  - name: 4Props
+    uniqueID: 1088867351
     locked: 0
   - name: Default
     uniqueID: 0
