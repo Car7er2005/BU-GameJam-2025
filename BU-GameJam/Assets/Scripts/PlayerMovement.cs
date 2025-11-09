@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
      private Rigidbody2D rb;             // Reference to the Rigidbody2D component
     public LayerMask groundLayer;       // LayerMask to identify ground objects
 
-    [SerializeField] private float speed = 5f, JumpPower = 5000f;
+    [SerializeField] private float speed = 5f, JumpPower = 50f, gravity = 2f;
 
     [SerializeField] private Animator animator;
 
@@ -22,7 +22,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); 
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = gravity;
     }
 
     private void Update()

@@ -11700,11 +11700,12 @@ GameObject:
   - component: {fileID: 1855543489}
   - component: {fileID: 1855543488}
   - component: {fileID: 1855543485}
+  - component: {fileID: 1855543494}
   - component: {fileID: 1855543492}
   - component: {fileID: 1855543486}
   - component: {fileID: 1855543491}
   - component: {fileID: 1855543493}
-  - component: {fileID: 1855543492}
+  - component: {fileID: 1855543490}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -11730,6 +11731,7 @@ MonoBehaviour:
   speed: 5
   JumpPower: 10
   gravity: 2
+  animator: {fileID: 1855543492}
   boxSize: {x: 0.6, y: 0.1}
   castDist: 0.02
   playerControls:
@@ -11886,7 +11888,7 @@ MonoBehaviour:
       G920 Driving Force Racing Wheel for Xbox One/stick]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1855543492}
+      - m_Target: {fileID: 1855543494}
         m_TargetAssemblyTypeName: InteractSystem, Assembly-CSharp
         m_MethodName: Interact
         m_Mode: 0
@@ -12044,6 +12046,31 @@ Animation:
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
+--- !u!114 &1855543494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855543484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c91b71448613ae48bde7114466ce0f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractSystem
+  detectionPoint: {fileID: 149700790}
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  interactAction:
+    m_Name: Interact
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 28ff9180-f0a5-43c6-9328-cd4067767cfe
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &1898632050
 GameObject:
   m_ObjectHideFlags: 0
