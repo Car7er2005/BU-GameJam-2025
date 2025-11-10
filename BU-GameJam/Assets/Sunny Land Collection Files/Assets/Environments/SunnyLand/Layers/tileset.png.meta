@@ -378,8 +378,8 @@ TextureImporter:
         y: 336
         width: 48
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.8333334, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -574,8 +574,8 @@ TextureImporter:
         y: 304
         width: 32
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -602,8 +602,8 @@ TextureImporter:
         y: 304
         width: 32
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -800,20 +800,20 @@ TextureImporter:
         serializedVersion: 2
         x: 112
         y: 272
-        width: 48
+        width: 22
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.36363637, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape:
-      - - {x: -8, y: 1}
-        - {x: 24, y: 1}
-        - {x: 24, y: 8}
-        - {x: -24, y: 8}
-        - {x: -24, y: -8}
-        - {x: -8, y: -8}
+      - - {x: 5, y: 1}
+        - {x: 11, y: 1}
+        - {x: 11, y: 8}
+        - {x: -11, y: 8}
+        - {x: -11, y: -8}
+        - {x: 5, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: b9ba3b2421fa0e450800000000000000
@@ -2240,6 +2240,35 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: tileset_85
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 272
+        width: 48
+        height: 16
+      alignment: 9
+      pivot: {x: 0.16666667, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 1}
+        - {x: 24, y: 1}
+        - {x: 24, y: 1}
+        - {x: 24, y: 8}
+        - {x: -24, y: 8}
+        - {x: -24, y: -8}
+        - {x: -8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09e469e58061f3c4083891a1484c6b4d
+      internalID: 557660188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -2338,6 +2367,7 @@ TextureImporter:
       tileset_82: -1914069038
       tileset_83: 1352726510
       tileset_84: 58744478
+      tileset_85: 557660188
       tileset_9: -781294158744790408
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
