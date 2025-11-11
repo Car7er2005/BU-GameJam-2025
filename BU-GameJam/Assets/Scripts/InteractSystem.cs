@@ -17,11 +17,12 @@ public class InteractSystem : MonoBehaviour
 
     void Update()
     {
-        
     }
 
     public void Interact(InputAction.CallbackContext context)
     {
+        
+        Debug.Log("Interact action triggered"); 
         if (context.performed && DetectObject())
             if (detectedObject.layer == LayerMask.NameToLayer("Interactable")) { 
                 detectedObject.GetComponent<Item>().Interact();
@@ -33,14 +34,16 @@ public class InteractSystem : MonoBehaviour
 
     bool DetectObject()
     {
-        Collider2D obj = Physics2D.OverlapCircle(detectionPoint.position,detectionRadius, interactableLayer);
+        Collider2D obj = Physics2D.OverlapCircle(detectionPoint.position, detectionRadius, interactableLayer);
         if(obj != null)
         {
+            Debug.Log("Object detected: " + obj.gameObject.name);
             detectedObject = obj.gameObject;
             return true;
         }
         else
         {
+            Debug.Log("No object detected");
             detectedObject = null;
             return false;
         }
