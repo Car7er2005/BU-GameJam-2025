@@ -5,8 +5,10 @@ public class PlayerMovement : MonoBehaviour
 {
      private Rigidbody2D rb;             // Reference to the Rigidbody2D component
     public LayerMask groundLayer;       // LayerMask to identify ground objects
+    
+    
 
-    [SerializeField] private float speed = 5f, JumpPower = 50f, gravity = 2f;
+    [SerializeField] private float speed = 5f, JumpPower = 10f, gravity = 2f;
 
     [SerializeField] private Animator animator;
 

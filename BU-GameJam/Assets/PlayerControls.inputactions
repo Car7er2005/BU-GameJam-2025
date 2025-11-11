@@ -16,6 +16,7 @@
                     "initialStateCheck": true
                 },
                 {
+<<<<<<< Updated upstream
                     "name": "Look",
                     "type": "Value",
                     "id": "4240147d-ecc7-4cc6-ad4e-b8cc7e3c1f34",
@@ -25,6 +26,8 @@
                     "initialStateCheck": true
                 },
                 {
+=======
+>>>>>>> Stashed changes
                     "name": "Interact",
                     "type": "Button",
                     "id": "4044d633-4581-41d8-8750-34f2406d9f2a",
@@ -178,6 +181,7 @@
                 },
                 {
                     "name": "",
+<<<<<<< Updated upstream
                     "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -288,12 +292,47 @@
                 },
                 {
                     "name": "",
+=======
+>>>>>>> Stashed changes
                     "id": "759cf3c8-bcc7-49f7-b057-7a7e8a4b6771",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "992810e2-78bc-4121-951f-70b151611181",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d047ef73-b76d-474a-bd2b-ad89846ceedb",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02c7ce02-f707-4603-9994-019c9ae06c78",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
