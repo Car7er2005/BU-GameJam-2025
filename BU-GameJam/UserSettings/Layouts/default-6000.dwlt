@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Game
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 114
+  controlID: 99
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 731
+    y: 786
     width: 1391
     height: 208
   m_SerializedDataModeController:
@@ -326,7 +326,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Sunny Land Collection Files/Assets/Environments/SunnyLand/Layers
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -336,16 +336,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Sunny Land Collection Files/Assets/Environments/SunnyLand/Layers
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Unity\BU-GameJam-2025\BU-GameJam
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d4c20000
-    m_LastClickedID: 49876
-    m_ExpandedIDs: 00000000a0c10000a2c10000a4c10000a6c10000a8c10000
+    scrollPos: {x: 0, y: 392}
+    m_SelectedIDs: 02c30000
+    m_LastClickedID: 49922
+    m_ExpandedIDs: 00000000a0c10000a2c10000a4c10000a6c10000a8c100009eeb0000a0eb000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -453,8 +453,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1393
-    y: 24
+    x: 1392
+    y: 79
     width: 527
     height: 915
   m_SerializedDataModeController:
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 24
+    y: 79
     width: 226
     height: 681
   m_SerializedDataModeController:
@@ -520,9 +520,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 00fbfffff2bf000006c0000022c00000b6c00000
+      m_SelectedIDs: 28c00000
+      m_LastClickedID: 49192
+      m_ExpandedIDs: 88faffffccbf0000f8bf00000cc0000028c0000072c00000bcc00000eac00000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -568,8 +568,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 228
-    y: 24
+    x: 227
+    y: 79
     width: 1163
     height: 681
   m_SerializedDataModeController:
@@ -947,7 +947,7 @@ MonoBehaviour:
       sizeOverridden: 0
     - dockPosition: 1
       containerId: overlay-container--right
-      displayed: 0
+      displayed: 1
       id: Scene View/Open Tile Palette
       index: 0
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":25.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
@@ -1140,9 +1140,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 19.638044, y: 2.63179, z: -0.07507748}
+    m_Target: {x: 18.886038, y: 5.068324, z: -0.040445644}
     speed: 2
-    m_Value: {x: 24.417181, y: 3.6442916, z: 0.018372048}
+    m_Value: {x: 17.320097, y: 5.2056384, z: -0.049530674}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1192,9 +1192,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 17.507727
+    m_Target: 19.280294
     speed: 2
-    m_Value: 8.162803
+    m_Value: 20.18879
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1352,7 +1352,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 786
-    width: 1276
+    width: 1391
     height: 208
   m_SerializedDataModeController:
     m_DataMode: 0
