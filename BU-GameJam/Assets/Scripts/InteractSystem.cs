@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +8,12 @@ public class InteractSystem : MonoBehaviour
     public const float detectionRadius = 0.5f;
     public LayerMask interactableLayer;
 
+    public GameObject detectedObject;
+
     public InputAction interactAction;
+
+    public bool isGrabbing;
+    public bool isUsing;
 
     void Update()
     {
@@ -16,15 +22,37 @@ public class InteractSystem : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if(context.performed && DetectObject())
-            Debug.Log("Interacted");
+        if (context.performed && DetectObject())
+            if (detectedObject.layer == LayerMask.NameToLayer("Interactable")) { 
+                detectedObject.GetComponent<Item>().Interact();
+                Debug.Log("Interacted");
+            }
         else if(context.performed && !DetectObject())
             Debug.Log("No object to interact with");
     }
 
     bool DetectObject()
     {
-        bool isDetected = Physics2D.OverlapCircle(detectionPoint.position,detectionRadius, interactableLayer);
-        return isDetected;
+        Collider2D obj = Physics2D.OverlapCircle(detectionPoint.position,detectionRadius, interactableLayer);
+        if(obj != null)
+        {
+            detectedObject = obj.gameObject;
+            return true;
+        }
+        else
+        {
+            detectedObject = null;
+            return false;
+        }
+    }
+
+    public void PickUpItem(GameObject item)
+    {
+        // Implement pickup logic here
+    }
+
+    public void UseItem(GameObject item)
+    {
+        CustomEvent.Trigger(item, "OnUse");
     }
 }

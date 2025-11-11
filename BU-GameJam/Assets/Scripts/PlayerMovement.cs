@@ -3,10 +3,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;             // Reference to the Rigidbody2D component
+     private Rigidbody2D rb;             // Reference to the Rigidbody2D component
     public LayerMask groundLayer;       // LayerMask to identify ground objects
     
-    private float speed = 5f, JumpPower = 10f, gravity = 2f;
+    
+
+    [SerializeField] private float speed = 5f, JumpPower = 10f, gravity = 2f;
+
+    [SerializeField] private Animator animator;
+
     private float horizontal;    // Movement speed and jump power
     private bool isFacingRight = true;  // To track the player's facing direction
 
@@ -20,10 +25,11 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = gravity;
     }
 
     private void Update()
-    {        
+    {
         if (!isFacingRight && horizontal > 0f)      // Player is moving right but facing left
         {
             Flip();
@@ -32,20 +38,15 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
+        
     }
 
     private void FixedUpdate()  // Called at a fixed interval for physics updates
     {        
         rb.linearVelocity = new Vector2(moveDirection.x * speed, rb.linearVelocityY);   // Set horizontal velocity based on input
 
-        if (isGrounded())
-        {
-            rb.gravityScale = gravity;   // Disable gravity when grounded (to stop sliding on slopes)
-        }
-        else
-        {
-            rb.gravityScale = gravity;   // Enable gravity when in the air
-        }
+        animator.SetBool("isGrounded", isGrounded());  // Update animator with grounded state
+        
     }
     
     public bool isGrounded()    // Check if the player is grounded using a boxcast
@@ -95,5 +96,13 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = context.ReadValue<Vector2>();
         horizontal = moveDirection.x;
+        if (horizontal != 0)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
     }
 }
