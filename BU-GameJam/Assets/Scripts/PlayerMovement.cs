@@ -6,12 +6,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;             // Reference to the Rigidbody2D component
     public LayerMask groundLayer;       // LayerMask to identify ground objects
     
-    [SerializeField] private float speed = 5f, JumpPower = 10f, gravity = 2f;
+    public float speed = 5f, JumpPower = 10f, gravity = 2f;
 
     [SerializeField] private Animator animator;
 
-    private float horizontal;    // Movement speed and jump power
-    private bool isFacingRight = true;  // To track the player's facing direction
+    public float horizontal;    // Movement speed and jump power
+    public bool isFacingRight = true;  // To track the player's facing direction
 
     public Vector2 boxSize;             // Size of the box for ground detection
     public float castDist;              // Distance for the boxcast
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         */
     }
 
-    private void Flip() // Flip the player's facing direction
+    public void Flip() // Flip the player's facing direction
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
@@ -102,5 +102,14 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isRunning", false);
         }
+    }
+
+    public float GetJumpPower() // Method to get jump power
+    {
+        return JumpPower;
+    }
+    public void SetJumpPower(float newJumpPower) // Method to set jump power
+    {
+        JumpPower = newJumpPower;
     }
 }

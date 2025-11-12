@@ -18376,6 +18376,7 @@ GameObject:
   - component: {fileID: 1855543488}
   - component: {fileID: 1855543485}
   - component: {fileID: 1855543494}
+  - component: {fileID: 1855543495}
   - component: {fileID: 1855543492}
   - component: {fileID: 1855543493}
   - component: {fileID: 1855543490}
@@ -18407,6 +18408,8 @@ MonoBehaviour:
   JumpPower: 10
   gravity: 2
   animator: {fileID: 1855543492}
+  horizontal: 0
+  isFacingRight: 1
   boxSize: {x: 0.6, y: 0.1}
   castDist: 0.02
   playerControls:
@@ -18579,14 +18582,6 @@ MonoBehaviour:
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 2776c80d-3c14-4091-8c56-d04ced07a2b0
-    m_ActionName: 'Player/Previous[/Keyboard/1]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba
-    m_ActionName: 'Player/Next[/Keyboard/2]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: c95b2375-e6d9-4b88-9c4c-c5e76515df4b
     m_ActionName: 'UI/Navigate[/Logitech G920 Driving Force Racing Wheel for Xbox
       One/stick/up,/Logitech G920 Driving Force Racing Wheel for Xbox One/stick/down,/Logitech
@@ -18644,6 +18639,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 718f001b-2951-4168-b9ea-caf1be03921a
     m_ActionName: 'Player/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1855543495}
+        m_TargetAssemblyTypeName: Warp, Assembly-CSharp
+        m_MethodName: WarpL
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 973fb280-afa1-4580-98e2-b9b53e877ac3
+    m_ActionName: 'Player/WarpL[/Keyboard/z]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1855543495}
+        m_TargetAssemblyTypeName: Warp, Assembly-CSharp
+        m_MethodName: WarpS
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c4837523-b531-4d29-a924-4a66076d2780
+    m_ActionName: 'Player/WarpS[/Keyboard/x]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -18752,6 +18779,22 @@ MonoBehaviour:
     m_Flags: 0
   isGrabbing: 0
   isUsing: 0
+--- !u!114 &1855543495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855543484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b65d95266478e4ba588addb0e11a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Warp
+  pm: {fileID: 0}
+  LargeMirror: 1
+  SmallMirror: 1
+  currentSize: 1
 --- !u!1 &1898632050
 GameObject:
   m_ObjectHideFlags: 0
