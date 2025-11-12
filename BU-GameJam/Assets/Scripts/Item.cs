@@ -36,6 +36,7 @@ public class Item : MonoBehaviour
                 break;
             case InteractionType.Use:
                 Object.FindFirstObjectByType<InteractSystem>().UseItem(gameObject);
+                
                 // Implement use logic here
                 break;            
             default:

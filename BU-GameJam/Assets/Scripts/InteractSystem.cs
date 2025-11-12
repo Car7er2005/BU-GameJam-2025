@@ -57,5 +57,6 @@ public class InteractSystem : MonoBehaviour
     public void UseItem(GameObject item)
     {
         CustomEvent.Trigger(item, "OnUse");
+        
     }
 }

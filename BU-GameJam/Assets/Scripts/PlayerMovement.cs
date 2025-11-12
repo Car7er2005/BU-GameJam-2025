@@ -20,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 moveDirection = Vector2.zero;   // Movement direction vector
 
+    private Transform currentPlatform;    // Reference to the current platform the player is on
+    private Vector3 lastPlatformPosition; // Last position of the current platform
+    private Vector2 currentPlatformVelocity = Vector2.zero; // Velocity of the current platform
+    //private bool isOnPlatform = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,32 +33,34 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!isFacingRight && horizontal > 0f)      // Player is moving right but facing left
-        {
-            Flip();
-        }
-        else if (isFacingRight && horizontal < 0f)  // Player is moving left but facing right
-        {
-            Flip();
-        }
-        
+        if (!isFacingRight && horizontal > 0f) Flip();
+        else if(isFacingRight && horizontal <0f) Flip();
+
+        animator.SetBool("isGrounded", isGrounded());
     }
 
     private void FixedUpdate()  // Called at a fixed interval for physics updates
     {        
-        rb.linearVelocity = new Vector2(moveDirection.x * speed, rb.linearVelocityY);   // Set horizontal velocity based on input
+        if(currentPlatform != null) // If on a moving platform, calculate its velocity
+        {
+            Vector3 platformPos = currentPlatform.position;
+            currentPlatformVelocity = ((Vector2)(platformPos - lastPlatformPosition)) / Time.fixedDeltaTime;
+            lastPlatformPosition = platformPos;
+        }
+        else
+        {
+            currentPlatformVelocity = Vector2.zero;
+        }
 
-        animator.SetBool("isGrounded", isGrounded());  // Update animator with grounded state
-        
+        float combinedHorizontal = moveDirection.x *speed + currentPlatformVelocity.x; // Combine player input with platform velocity
+        float combinedVertical = rb.linearVelocity.y + (isGrounded() ? currentPlatformVelocity.y : 0f); // Combine vertical velocity with platform velocity
+
+        rb.linearVelocity = new Vector2(combinedHorizontal, combinedVertical);   // Set horizontal velocity based on input      
     }
     
     public bool isGrounded()    // Check if the player is grounded using a boxcast
     {
-        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDist, groundLayer))    // Perform boxcast to check for ground
-        {
-            return true;
-        }else
-            return false;
+        return Physics2D.BoxCast(transform.position, boxSize, 0f, -transform.up, castDist, groundLayer);        
     }
     
     private void OnDrawGizmos() //to see the boxcast in the scene view
@@ -66,20 +73,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed && isGrounded())
         {
-            rb.AddForce(new Vector2(0f, JumpPower), ForceMode2D.Impulse);
-        }/*
-        else
-        {
-            Debug.Log("Jump not performed or player not grounded.");
+            rb.AddForce(Vector2.up * JumpPower, ForceMode2D.Impulse);
         }
-        */
-
-        /* // if we want variable jump height (hold to jump higher)
-        if (context.canceled && rb.linearVelocity.y > 0f)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
-        }
-        */
     }
 
     public void Flip() // Flip the player's facing direction
@@ -94,13 +89,74 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = context.ReadValue<Vector2>();
         horizontal = moveDirection.x;
-        if (horizontal != 0)
+        if (horizontal != 0) animator.SetBool("isRunning", true);
+        else animator.SetBool("isRunning", false);
+        
+    }
+
+    // Platform detection and tracking
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((groundLayer.value & (1 << collision.gameObject.layer)) == 0) return;
+
+        foreach (var contact in collision.contacts)
         {
-            animator.SetBool("isRunning", true);
+            if (contact.normal.y > 0.5f) // contact from above
+            {
+                // Look up the MovingPlatform on this object or its parents
+                var mp = collision.collider.GetComponentInParent<MovingPlatform>();
+                if (mp != null)
+                {
+                    currentPlatform = mp.platform != null ? mp.platform : mp.transform;
+                    lastPlatformPosition = currentPlatform.position;
+                    //isOnPlatform = true;
+                }
+                else
+                {
+                    //isOnPlatform = false;
+                }
+                break;
+            }
         }
-        else
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if ((groundLayer.value & (1 << collision.gameObject.layer)) == 0) return;
+
+        foreach (var contact in collision.contacts)
         {
-            animator.SetBool("isRunning", false);
+            if (contact.normal.y > 0.5f)
+            {
+                var mp = collision.collider.GetComponentInParent<MovingPlatform>();
+                if (mp != null)
+                {
+                    if (currentPlatform == null)
+                    {
+                        currentPlatform = mp.platform != null ? mp.platform : mp.transform;
+                        lastPlatformPosition = currentPlatform.position;
+                    }
+                    //isOnPlatform = true;
+                }
+                else
+                {
+                    //isOnPlatform = false;
+                }
+                break;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        var mp = collision.collider.GetComponentInParent<MovingPlatform>();
+        if (mp == null) return;
+
+        var trackedPlatform = mp.platform != null ? mp.platform : mp.transform;
+        if (currentPlatform == trackedPlatform || (currentPlatform != null && currentPlatform.IsChildOf(mp.transform)))
+        {
+            currentPlatform = null;
+            //isOnPlatform = false;
         }
     }
 

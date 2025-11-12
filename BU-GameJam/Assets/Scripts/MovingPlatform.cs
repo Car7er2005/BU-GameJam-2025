@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class MovingPlatform : MonoBehaviour
 {
     public List<Transform> points;  // Points the platform will move between
     public Transform platform;     // Reference to the platform itself
     int goalPointIndex = 0; // Index of the current target point
     public float speed = 2f;        // Speed of the platform
-    [SerializeField] public bool active = true;     // Whether the platform is active
+    [SerializeField] public bool active = false;     // Whether the platform is active
 
     void Update()
     {
@@ -26,8 +26,12 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    void SetActive(bool x)
+    public void SetActive(bool isActive)
     {
-        active = x;
+        active = isActive;
     }
+
+    public void Activate() => SetActive(true);
+    public void Deactivate() => SetActive(false);
+    public void ToggleActive() => SetActive(!active);
 }
