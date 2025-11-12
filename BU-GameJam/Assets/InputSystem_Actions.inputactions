@@ -36,7 +36,7 @@
                 {
                     "name": "WarpL",
                     "type": "Button",
-                    "id": "a5ac5d6f-5135-4cdf-be8d-64d8b5a5e4a3",
+                    "id": "973fb280-afa1-4580-98e2-b9b53e877ac3",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -45,7 +45,7 @@
                 {
                     "name": "WarpS",
                     "type": "Button",
-                    "id": "240c4478-0e67-4234-a48c-b6173fce2544",
+                    "id": "c4837523-b531-4d29-a924-4a66076d2780",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -209,22 +209,22 @@
                 },
                 {
                     "name": "",
-                    "id": "863b69cc-440d-4471-b995-0fc926aa3b1e",
+                    "id": "6c25ee6b-7164-424c-b8c7-7e8349ef4e75",
                     "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "",
                     "action": "WarpL",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "8cccbd7c-9015-4f34-a32a-a9516fc3d8f1",
+                    "id": "e499b923-81d5-4e77-8bba-bbf6030d72bf",
                     "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "",
                     "action": "WarpS",
                     "isComposite": false,
                     "isPartOfComposite": false

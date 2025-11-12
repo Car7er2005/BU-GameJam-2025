@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 768
+    y: 713
     width: 1391
     height: 226
   m_SerializedDataModeController:
