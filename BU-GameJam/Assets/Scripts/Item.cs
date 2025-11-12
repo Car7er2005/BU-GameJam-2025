@@ -30,13 +30,12 @@ public class Item : MonoBehaviour
         switch (interactType)
         {
             case InteractionType.Pickup:
-                //FindObjectOfType<InteractSystem>().PickUpItem(gameObject);
+                Object.FindFirstObjectByType<InteractSystem>().PickUpItem(gameObject);
                 gameObject.SetActive(false);
                 // Implement pickup logic here
                 break;
             case InteractionType.Use:
                 Object.FindFirstObjectByType<InteractSystem>().UseItem(gameObject);
-                
                 // Implement use logic here
                 break;            
             default:
