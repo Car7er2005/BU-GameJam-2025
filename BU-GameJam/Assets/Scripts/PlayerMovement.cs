@@ -5,10 +5,11 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;             // Reference to the Rigidbody2D component
     public LayerMask groundLayer;       // LayerMask to identify ground objects
-    
+
     public float speed = 5f, JumpPower = 10f, gravity = 2f;
 
     [SerializeField] private Animator animator;
+    public Animator GetAnimator() { return animator; }
 
     public float horizontal;    // Movement speed and jump power
     public bool isFacingRight = true;  // To track the player's facing direction
@@ -16,12 +17,17 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 boxSize;             // Size of the box for ground detection
     public float castDist;              // Distance for the boxcast
 
+    [SerializeField] private InputAction damageTest;
+   
     public InputAction playerControls;  // Input action for player controls
 
     Vector2 moveDirection = Vector2.zero;   // Movement direction vector
 
+    private PlayerHealth playerHealth;
+
     private void Start()
     {
+        playerHealth = GetComponent<PlayerHealth>();
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = gravity;
     }
@@ -36,26 +42,27 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
-        
     }
 
     private void FixedUpdate()  // Called at a fixed interval for physics updates
-    {        
+    {
         rb.linearVelocity = new Vector2(moveDirection.x * speed, rb.linearVelocityY);   // Set horizontal velocity based on input
 
         animator.SetBool("isGrounded", isGrounded());  // Update animator with grounded state
-        
+
+
     }
-    
+
     public bool isGrounded()    // Check if the player is grounded using a boxcast
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDist, groundLayer))    // Perform boxcast to check for ground
         {
             return true;
-        }else
+        }
+        else
             return false;
     }
-    
+
     private void OnDrawGizmos() //to see the boxcast in the scene view
     {
         Gizmos.color = Color.red;
@@ -112,4 +119,27 @@ public class PlayerMovement : MonoBehaviour
     {
         JumpPower = newJumpPower;
     }
+
+    private void OnEnable()
+    {
+        damageTest.Enable();
+        damageTest.performed += TestDamage; // Link the method to the 'performed' event
+    }
+
+    private void OnDisable()
+    {
+        damageTest.Disable();
+        damageTest.performed -= TestDamage; // Unlink the method when the script is disabled
+    }
+
+private void TestDamage(InputAction.CallbackContext context)
+{
+    // Check if playerHealth reference is valid
+    if (playerHealth != null)
+    {
+        playerHealth.TakeDamage(1); // Perform the damage test
+        
+        Debug.Log("Damage taken. Health remaining: " + playerHealth.GetCurrentHealth());
+    }
+}
 }
