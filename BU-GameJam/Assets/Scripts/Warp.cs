@@ -67,7 +67,11 @@ public class Warp : MonoBehaviour
             // Warp to large size
             transform.localScale = new Vector3(12f, 12f, 1f);
             currentSize = 2;
-            if (pm != null) pm.JumpPower = 16f; // Increase jump power when large
+            if (pm != null)
+            {
+                pm.JumpPower = 16f; // Increase jump power when large
+                pm.speed = 7f; // Increase speed when large
+            }
             else Debug.LogWarning("WarpL: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped to large size.");
         }
@@ -76,7 +80,11 @@ public class Warp : MonoBehaviour
             // Warp to normal size from small
             transform.localScale = new Vector3(6.5f, 6.5f, 1f);
             currentSize = 1;
-            if (pm != null) pm.JumpPower = 11f; // Reset jump power to normal
+            if (pm != null)
+            {
+                pm.JumpPower = 11f; // Reset jump power to normal
+                pm.speed = 5f; // Reset speed to normal
+            }
             else Debug.LogWarning("WarpL: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped from small to normal size.");
         }
@@ -106,21 +114,29 @@ public class Warp : MonoBehaviour
         }
         */
 
-        if (currentSize == 1)
+        if (currentSize == 1 && SmallMirror)
         {
             // Warp to small size
             transform.localScale = new Vector3(3f, 3f, 1f);
             currentSize = 0;
-            if (pm != null) pm.JumpPower = 9f; // Decrease jump power when small
+            if (pm != null)
+            {
+                pm.JumpPower = 9f; // Decrease jump power when small
+                pm.speed = 4f; // Decrease speed when small
+            }
             else Debug.LogWarning("WarpS: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped to small size.");
         }
-        else if (currentSize == 2)
+        else if (currentSize == 2 && LargeMirror)
         {
             // Warp to normal size from large
             transform.localScale = new Vector3(6.5f, 6.5f, 1f);
             currentSize = 1;
-            if (pm != null) pm.JumpPower = 11f; // Reset jump power to normal
+            if (pm != null)
+            {
+                pm.JumpPower = 11f; // Reset jump power to normal
+                pm.speed = 5f; // Reset speed to normal
+            }
             else Debug.LogWarning("WarpS: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped from large to normal size.");
         }
