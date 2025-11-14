@@ -53,7 +53,7 @@ public class NPC : MonoBehaviour
             yield return new WaitForSeconds(wordSpeed);
         }
         
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         
         NextLine();
         
@@ -87,7 +87,7 @@ public class NPC : MonoBehaviour
     	{
     	    playerIsClose = false;
     	    zeroText();
-    	    //hasStartedTalking = false;
+    	    //hasStartedTalking = true;
     	}
     }
     
