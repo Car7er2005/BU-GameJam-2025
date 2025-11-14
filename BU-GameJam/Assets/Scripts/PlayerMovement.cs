@@ -73,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed && isGrounded())
         {
+            AudioManager.Instance.Play(AudioManager.SoundType.Jump);
             rb.AddForce(Vector2.up * JumpPower, ForceMode2D.Impulse);
         }
     }
