@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
     {
         Pickup,
         Use,
-        Plate
+        Talk
     }
     public enum ItemType
     {
@@ -37,7 +37,10 @@ public class Item : MonoBehaviour
             case InteractionType.Use:
                 Object.FindFirstObjectByType<InteractSystem>().UseItem(gameObject);
                 // Implement use logic here
-                break;            
+                break;       
+            case InteractionType.Talk:
+            	// Implement use talk here
+            	break;
             default:
                 Debug.Log("Unknown interaction");
                 break;
