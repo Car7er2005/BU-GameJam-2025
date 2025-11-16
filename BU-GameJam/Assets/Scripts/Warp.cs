@@ -106,13 +106,11 @@ public class Warp : MonoBehaviour
         Debug.Log("WarpS action triggered");
         if (!context.performed) return;
 
-        /*
         if (!SmallMirror)
         {
             Debug.Log("Small warp ability not unlocked.");
             return;
         }
-        */
 
         if (currentSize == 1 && SmallMirror)
         {
@@ -123,6 +121,7 @@ public class Warp : MonoBehaviour
             {
                 pm.JumpPower = 9f; // Decrease jump power when small
                 pm.speed = 4f; // Decrease speed when small
+                pm.boxSize = new Vector2(0.3f, 0.1f); // Adjust box size for ground check
             }
             else Debug.LogWarning("WarpS: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped to small size.");
@@ -136,6 +135,7 @@ public class Warp : MonoBehaviour
             {
                 pm.JumpPower = 11f; // Reset jump power to normal
                 pm.speed = 5f; // Reset speed to normal
+                pm.boxSize = new Vector2(0.6f, 0.1f); // Reset box size for ground check
             }
             else Debug.LogWarning("WarpS: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped from large to normal size.");
