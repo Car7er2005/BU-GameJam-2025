@@ -54,33 +54,43 @@ public class Warp : MonoBehaviour
         Debug.Log("WarpL action triggered");
         if (!context.performed) return;
 
+        /*
         if (!LargeMirror)
         {
             Debug.Log("Large warp ability not unlocked.");
             return;
         }
+        */
 
-        if (currentSize == 1)
+        if (currentSize == 1 && LargeMirror)
         {
             // Warp to large size
             transform.localScale = new Vector3(12f, 12f, 1f);
             currentSize = 2;
-            if (pm != null) pm.JumpPower = 15f; // Increase jump power when large
+            if (pm != null)
+            {
+                pm.JumpPower = 16f; // Increase jump power when large
+                pm.speed = 7f; // Increase speed when large
+            }
             else Debug.LogWarning("WarpL: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped to large size.");
         }
-        else if (currentSize == 0)
+        else if (currentSize == 0 && SmallMirror)
         {
             // Warp to normal size from small
             transform.localScale = new Vector3(6.5f, 6.5f, 1f);
             currentSize = 1;
-            if (pm != null) pm.SetJumpPower(10f); // Reset jump power to normal
+            if (pm != null)
+            {
+                pm.JumpPower = 11f; // Reset jump power to normal
+                pm.speed = 5f; // Reset speed to normal
+            }
             else Debug.LogWarning("WarpL: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped from small to normal size.");
         }
         else
         {
-            Debug.Log("Already at largest size");
+            Debug.Log("Already at largest size, or don't have the right mirror");
         }
 
         if(!pm.isFacingRight) // Maintain facing direction after warp
@@ -102,27 +112,37 @@ public class Warp : MonoBehaviour
             return;
         }
 
-        if (currentSize == 1)
+        if (currentSize == 1 && SmallMirror)
         {
             // Warp to small size
             transform.localScale = new Vector3(3f, 3f, 1f);
             currentSize = 0;
-            if (pm != null) pm.SetJumpPower(7f); // Decrease jump power when small
+            if (pm != null)
+            {
+                pm.JumpPower = 9f; // Decrease jump power when small
+                pm.speed = 4f; // Decrease speed when small
+                pm.boxSize = new Vector2(0.3f, 0.1f); // Adjust box size for ground check
+            }
             else Debug.LogWarning("WarpS: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped to small size.");
         }
-        else if (currentSize == 2)
+        else if (currentSize == 2 && LargeMirror)
         {
             // Warp to normal size from large
             transform.localScale = new Vector3(6.5f, 6.5f, 1f);
             currentSize = 1;
-            if (pm != null) pm.SetJumpPower(10f); // Reset jump power to normal
+            if (pm != null)
+            {
+                pm.JumpPower = 11f; // Reset jump power to normal
+                pm.speed = 5f; // Reset speed to normal
+                pm.boxSize = new Vector2(0.6f, 0.1f); // Reset box size for ground check
+            }
             else Debug.LogWarning("WarpS: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped from large to normal size.");
         }
         else
         {
-            Debug.Log("Already at smallest size");
+            Debug.Log("Already at smallest size, or don't have the right mirror");
         }
 
         if (!pm.isFacingRight) // Maintain facing direction after warp
@@ -131,5 +151,15 @@ public class Warp : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+    }
+
+    public void setLargeMirror(bool isActive)
+    {
+        LargeMirror = isActive;
+    }
+
+    public void setSmallMirror(bool isActive)
+    {
+        SmallMirror = isActive;
     }
 }

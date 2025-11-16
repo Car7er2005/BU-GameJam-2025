@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
     {
         Pickup,
         Use,
-        Plate
+        Talk
     }
     public enum ItemType
     {
@@ -30,14 +30,17 @@ public class Item : MonoBehaviour
         switch (interactType)
         {
             case InteractionType.Pickup:
-                //FindObjectOfType<InteractSystem>().PickUpItem(gameObject);
+                Object.FindFirstObjectByType<InteractSystem>().PickUpItem(gameObject);
                 gameObject.SetActive(false);
                 // Implement pickup logic here
                 break;
             case InteractionType.Use:
                 Object.FindFirstObjectByType<InteractSystem>().UseItem(gameObject);
                 // Implement use logic here
-                break;            
+                break;       
+            case InteractionType.Talk:
+            	// Implement use talk here
+            	break;
             default:
                 Debug.Log("Unknown interaction");
                 break;

@@ -51,11 +51,11 @@ public class InteractSystem : MonoBehaviour
 
     public void PickUpItem(GameObject item)
     {
-        // Implement pickup logic here
+        CustomEvent.Trigger(item, "OnPickUp");
     }
 
     public void UseItem(GameObject item)
     {
-        CustomEvent.Trigger(item, "OnUse");
+        CustomEvent.Trigger(item, "OnUse");        
     }
 }
