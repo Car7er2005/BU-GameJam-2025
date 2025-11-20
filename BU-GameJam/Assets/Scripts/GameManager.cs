@@ -9,18 +9,33 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
+        // If a GameManager already exists (e.g. from a previous scene load), 
+        // we destroy THIS new one to prevent duplicates.
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
+            return; // Stop doing anything else
         }
-        else Destroy(gameObject);
+
+        // Otherwise, I am the manager
+        Instance = this;
+
+        // IMPORTANT: Do NOT use DontDestroyOnLoad(gameObject);
+        // We WANT this manager to die when the scene reloads so a new one
+        // can be born and link to the new DeathPanel automatically.
     }
 
     public void EndGame()
     {
-        deathPanel.SetActive(true);
-        Time.timeScale = 0f;
+        if (deathPanel != null)
+        {
+            deathPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Debug.LogError("GameManager: Death Panel is missing! Check the Inspector.");
+        }
     }
 
     // Called by the UI "Restart" button (Full Reset)
@@ -50,16 +65,14 @@ public class GameManager : MonoBehaviour
 
         if (Keyboard.current.rKey.wasPressedThisFrame)
         {
-            // If the game is paused (DeathPanel active) AND R is pressed, initiate reset.
-            if (Time.timeScale == 0f && deathPanel.activeSelf)
-            {
-                // This call starts the sequence: Unpause Time -> Reload Scene -> Warp Player
+            //if (Time.timeScale == 0f && deathPanel.activeSelf)
+            //{
                 if (CheckpointManager.Instance != null)
                 {
                     // Call the Checkpoint Manager to handle the full scene reset and warp
                     CheckpointManager.Instance.InitiateSceneReset();
                 }
-            }
+            //}
         }
     }
 }

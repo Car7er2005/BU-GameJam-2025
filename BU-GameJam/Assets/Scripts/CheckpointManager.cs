@@ -7,17 +7,8 @@ public class CheckpointManager : MonoBehaviour
     public static CheckpointManager Instance;
     private GameObject player;
     private Vector3 playerSpawnPos;
-    private Vector3 cameraTargetPos;
-    private GameObject activeCameraObject;
+    private string activeCameraName;
     private bool shouldRespawn = false;
-    public void SetPlayerPos(Vector3 pos) {
-        playerSpawnPos = pos;
-    }
-    public void SetCameraPos(Vector3 pos)
-    {
-        cameraTargetPos = pos;
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         if (Instance == null)
@@ -28,6 +19,14 @@ public class CheckpointManager : MonoBehaviour
         else Destroy(gameObject);
 
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public void SetCheckpoint(Vector3 newPlayerPos, GameObject vCamObject) {
+        playerSpawnPos = newPlayerPos;
+        if (vCamObject != null) {
+            activeCameraName = vCamObject.name;
+
+        }
     }
 
     private void OnEnable()
@@ -60,18 +59,22 @@ public class CheckpointManager : MonoBehaviour
 
     private void ResetPlayerState()
     {
-        // 1. Find the new player and the new VCam object in the freshly loaded scene
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         if (player != null)
         {
+            // 1. Teleport Player
             player.transform.position = playerSpawnPos;
-            player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
 
-            // Re-activate the VCam by searching the scene for the saved VCam object name
-            if (activeCameraObject != null)
+            // 2. Stop Physics (prevent sliding after teleport)
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+            if (rb != null) rb.linearVelocity = Vector2.zero;
+
+            // 3. Re-activate the VCam by name
+            if (!string.IsNullOrEmpty(activeCameraName))
             {
-                GameObject newVcam = GameObject.Find(activeCameraObject.name);
+                // Find the NEW camera in the NEW scene that has the SAME name
+                GameObject newVcam = GameObject.Find(activeCameraName);
                 if (newVcam != null)
                 {
                     newVcam.SetActive(true);
@@ -79,16 +82,7 @@ public class CheckpointManager : MonoBehaviour
             }
         }
 
-        // 3. Reset the flag and time
         shouldRespawn = false;
         Time.timeScale = 1f;
-        // Optionally: Restore health here
-    }
-
-    // (Keep SetCheckpoint logic the same)
-    public void SetCheckpoint(Vector3 newPlayerPos, GameObject vCamObject)
-    {
-        playerSpawnPos = newPlayerPos;
-        activeCameraObject = vCamObject;
     }
 }
