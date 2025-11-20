@@ -3,10 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;             // Reference to the Rigidbody2D component
+    public Rigidbody2D rb;             // Reference to the Rigidbody2D component
     public LayerMask groundLayer;       // LayerMask to identify ground objects
     
     public float speed = 5f, JumpPower = 10f, gravity = 2f;
+
+    public float mass = 1f;
 
     [SerializeField] private Animator animator;
 
@@ -23,6 +25,15 @@ public class PlayerMovement : MonoBehaviour
     private Transform currentPlatform;    // Reference to the current platform the player is on
     private Vector3 lastPlatformPosition; // Last position of the current platform
     private Vector2 currentPlatformVelocity = Vector2.zero; // Velocity of the current platform
+
+    private const float fixedInterval = 0.01f;
+
+    // Timer to track elapsed time since the last action
+
+
+
+    public bool cantGetHurt = false;
+    public float cantGetHurtTimer = 0f;
     //private bool isOnPlatform = false;
 
     private void Start()
@@ -41,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()  // Called at a fixed interval for physics updates
     {        
+
+
         if(currentPlatform != null) // If on a moving platform, calculate its velocity
         {
             Vector3 platformPos = currentPlatform.position;
@@ -55,7 +68,14 @@ public class PlayerMovement : MonoBehaviour
         float combinedHorizontal = moveDirection.x *speed + currentPlatformVelocity.x; // Combine player input with platform velocity
         float combinedVertical = rb.linearVelocity.y + (isGrounded() ? currentPlatformVelocity.y : 0f); // Combine vertical velocity with platform velocity
 
-        rb.linearVelocity = new Vector2(combinedHorizontal, combinedVertical);   // Set horizontal velocity based on input      
+        rb.mass = mass;
+        
+
+        rb.linearVelocity = new Vector2(combinedHorizontal, combinedVertical);   // Set horizontal velocity based on input
+                                                                                 // 
+        cantGetHurtTimer -= Time.fixedDeltaTime;
+        if (cantGetHurtTimer <= 0) cantGetHurt = false;
+
     }
     
     public bool isGrounded()    // Check if the player is grounded using a boxcast
@@ -159,6 +179,16 @@ public class PlayerMovement : MonoBehaviour
             currentPlatform = null;
             //isOnPlatform = false;
         }
+    }
+
+    public void setMass(float newMass){
+        mass = newMass;
+    }
+
+
+    public Animator GetAnimator()
+    {
+        return animator;
     }
 
 }

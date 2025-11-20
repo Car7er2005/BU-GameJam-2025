@@ -69,8 +69,9 @@ public class Warp : MonoBehaviour
             currentSize = 2;
             if (pm != null)
             {
-                pm.JumpPower = 16f; // Increase jump power when large
+                pm.JumpPower = 16f*3f; // Increase jump power when large
                 pm.speed = 7f; // Increase speed when large
+                pm.setMass(3f);
             }
             else Debug.LogWarning("WarpL: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped to large size.");
@@ -84,6 +85,7 @@ public class Warp : MonoBehaviour
             {
                 pm.JumpPower = 11f; // Reset jump power to normal
                 pm.speed = 5f; // Reset speed to normal
+                pm.setMass(1f);
             }
             else Debug.LogWarning("WarpL: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped from small to normal size.");
@@ -106,13 +108,11 @@ public class Warp : MonoBehaviour
         Debug.Log("WarpS action triggered");
         if (!context.performed) return;
 
-        /*
         if (!SmallMirror)
         {
             Debug.Log("Small warp ability not unlocked.");
             return;
         }
-        */
 
         if (currentSize == 1 && SmallMirror)
         {
@@ -121,8 +121,10 @@ public class Warp : MonoBehaviour
             currentSize = 0;
             if (pm != null)
             {
-                pm.JumpPower = 9f; // Decrease jump power when small
+                pm.JumpPower = 9f*0.5f; // Decrease jump power when small
                 pm.speed = 4f; // Decrease speed when small
+                pm.setMass(.5f);
+                pm.boxSize = new Vector2(0.3f, 0.1f); // Adjust box size for ground check
             }
             else Debug.LogWarning("WarpS: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped to small size.");
@@ -136,6 +138,8 @@ public class Warp : MonoBehaviour
             {
                 pm.JumpPower = 11f; // Reset jump power to normal
                 pm.speed = 5f; // Reset speed to normal
+                pm.setMass(1f);
+                pm.boxSize = new Vector2(0.6f, 0.1f); // Reset box size for ground check
             }
             else Debug.LogWarning("WarpS: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped from large to normal size.");
