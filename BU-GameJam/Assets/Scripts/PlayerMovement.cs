@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;             // Reference to the Rigidbody2D component
+    public Rigidbody2D rb;             // Reference to the Rigidbody2D component
     public LayerMask groundLayer;       // LayerMask to identify ground objects
     
     public float speed = 5f, JumpPower = 10f, gravity = 2f;
@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     private Transform currentPlatform;    // Reference to the current platform the player is on
     private Vector3 lastPlatformPosition; // Last position of the current platform
     private Vector2 currentPlatformVelocity = Vector2.zero; // Velocity of the current platform
+
+    public bool cantGetHurt = true;
     //private bool isOnPlatform = false;
 
     private void Start()
@@ -159,6 +161,12 @@ public class PlayerMovement : MonoBehaviour
             currentPlatform = null;
             //isOnPlatform = false;
         }
+    }
+
+
+    public Animator GetAnimator()
+    {
+        return animator;
     }
 
 }
