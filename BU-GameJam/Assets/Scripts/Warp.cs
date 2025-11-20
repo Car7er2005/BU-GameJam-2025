@@ -69,8 +69,9 @@ public class Warp : MonoBehaviour
             currentSize = 2;
             if (pm != null)
             {
-                pm.JumpPower = 16f; // Increase jump power when large
+                pm.JumpPower = 16f*3f; // Increase jump power when large
                 pm.speed = 7f; // Increase speed when large
+                pm.setMass(3f);
             }
             else Debug.LogWarning("WarpL: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped to large size.");
@@ -84,6 +85,7 @@ public class Warp : MonoBehaviour
             {
                 pm.JumpPower = 11f; // Reset jump power to normal
                 pm.speed = 5f; // Reset speed to normal
+                pm.setMass(1f);
             }
             else Debug.LogWarning("WarpL: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped from small to normal size.");
@@ -121,8 +123,9 @@ public class Warp : MonoBehaviour
             currentSize = 0;
             if (pm != null)
             {
-                pm.JumpPower = 9f; // Decrease jump power when small
+                pm.JumpPower = 9f*0.5f; // Decrease jump power when small
                 pm.speed = 4f; // Decrease speed when small
+                pm.setMass(.5f);
             }
             else Debug.LogWarning("WarpS: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped to small size.");
@@ -136,6 +139,7 @@ public class Warp : MonoBehaviour
             {
                 pm.JumpPower = 11f; // Reset jump power to normal
                 pm.speed = 5f; // Reset speed to normal
+                pm.setMass(1f);
             }
             else Debug.LogWarning("WarpS: PlayerMovement (pm) is null; cannot set jump power.");
             Debug.Log("Warped from large to normal size.");
