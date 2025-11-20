@@ -7,8 +7,8 @@ public class Warp : MonoBehaviour
 {
     public PlayerMovement pm;
 
-    public bool LargeMirror = false;    // if the large warp ability is unlocked
-    public bool SmallMirror = false;    // if the small warp ability is unlocked
+    public static bool LargeMirror = false;    // if the large warp ability is unlocked
+    public static bool SmallMirror = false;    // if the small warp ability is unlocked
     // 0 = small, 1 = normal, 2 = large
     public int currentSize = 1; 
 
