@@ -58,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         float combinedVertical = rb.linearVelocity.y + (isGrounded() ? currentPlatformVelocity.y : 0f); // Combine vertical velocity with platform velocity
 
         rb.mass = mass;
+        
 
         rb.linearVelocity = new Vector2(combinedHorizontal, combinedVertical);   // Set horizontal velocity based on input      
     }
