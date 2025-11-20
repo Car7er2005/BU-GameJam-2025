@@ -28060,6 +28060,10 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 5a9e2551996c6ca47a5820aa6d57a4ae, type: 3}
     Volume: 0.5
     Source: {fileID: 0}
+  - Type: 5
+    Clip: {fileID: 8300000, guid: 5a9e2551996c6ca47a5820aa6d57a4ae, type: 3}
+    Volume: 0.5
+    Source: {fileID: 0}
 --- !u!4 &823083092
 Transform:
   m_ObjectHideFlags: 0
@@ -31866,6 +31870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35595387bbde9245a4876ede7d8f9af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  rb: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -31886,6 +31891,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  cantGetHurt: 1
 --- !u!50 &1855543486
 Rigidbody2D:
   serializedVersion: 5
