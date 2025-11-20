@@ -94,7 +94,14 @@ public class AudioManager : MonoBehaviour
             _musicSource.loop = true;
         }
 
+        if (_musicSource.clip == track.Clip) {
+            return;
+
+        }
+
+        _musicSource.Stop();
         _musicSource.clip = track.Clip;
+        _musicSource.volume = track.Volume;
         _musicSource.Play();
     }
 }
