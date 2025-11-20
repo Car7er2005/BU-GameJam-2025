@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     
     public float speed = 5f, JumpPower = 10f, gravity = 2f;
 
+    public float mass = 1f;
+
     [SerializeField] private Animator animator;
 
     public float horizontal;    // Movement speed and jump power
@@ -65,6 +67,9 @@ public class PlayerMovement : MonoBehaviour
 
         float combinedHorizontal = moveDirection.x *speed + currentPlatformVelocity.x; // Combine player input with platform velocity
         float combinedVertical = rb.linearVelocity.y + (isGrounded() ? currentPlatformVelocity.y : 0f); // Combine vertical velocity with platform velocity
+
+        rb.mass = mass;
+        
 
         rb.linearVelocity = new Vector2(combinedHorizontal, combinedVertical);   // Set horizontal velocity based on input
                                                                                  // 
@@ -174,6 +179,10 @@ public class PlayerMovement : MonoBehaviour
             currentPlatform = null;
             //isOnPlatform = false;
         }
+    }
+
+    public void setMass(float newMass){
+        mass = newMass;
     }
 
 
