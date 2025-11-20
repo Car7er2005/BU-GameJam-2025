@@ -10,7 +10,9 @@ public class AudioManager : MonoBehaviour
         UnderworldMusic,
         WarpL,
         WarpS,
-        Frog
+        Frog,
+        Drink,
+        Hurt
         // Add more sound types as needed
     }
 

@@ -24,7 +24,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 lastPlatformPosition; // Last position of the current platform
     private Vector2 currentPlatformVelocity = Vector2.zero; // Velocity of the current platform
 
-    public bool cantGetHurt = true;
+    private const float fixedInterval = 0.01f;
+
+    // Timer to track elapsed time since the last action
+
+
+
+    public bool cantGetHurt = false;
+    public float cantGetHurtTimer = 0f;
     //private bool isOnPlatform = false;
 
     private void Start()
@@ -43,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()  // Called at a fixed interval for physics updates
     {        
+
+
         if(currentPlatform != null) // If on a moving platform, calculate its velocity
         {
             Vector3 platformPos = currentPlatform.position;
@@ -57,7 +66,11 @@ public class PlayerMovement : MonoBehaviour
         float combinedHorizontal = moveDirection.x *speed + currentPlatformVelocity.x; // Combine player input with platform velocity
         float combinedVertical = rb.linearVelocity.y + (isGrounded() ? currentPlatformVelocity.y : 0f); // Combine vertical velocity with platform velocity
 
-        rb.linearVelocity = new Vector2(combinedHorizontal, combinedVertical);   // Set horizontal velocity based on input      
+        rb.linearVelocity = new Vector2(combinedHorizontal, combinedVertical);   // Set horizontal velocity based on input
+                                                                                 // 
+        cantGetHurtTimer -= Time.fixedDeltaTime;
+        if (cantGetHurtTimer <= 0) cantGetHurt = false;
+
     }
     
     public bool isGrounded()    // Check if the player is grounded using a boxcast

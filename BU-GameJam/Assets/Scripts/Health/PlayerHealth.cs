@@ -34,7 +34,8 @@ public class PlayerHealth : MonoBehaviour
             if (playerMovement != null && playerMovement.GetAnimator() != null)
             {
                 playerMovement.GetAnimator().SetTrigger("isHurt");
-                playerMovement.rb.AddForce(Vector2.up * playerMovement.JumpPower*(0.8f), ForceMode2D.Impulse);
+
+                playerMovement.rb.AddForce(Vector2.up * playerMovement.JumpPower/(1.5f), ForceMode2D.Impulse);
             }
 
             healthUI.UpdateHealthDisplay(currentHealth);
