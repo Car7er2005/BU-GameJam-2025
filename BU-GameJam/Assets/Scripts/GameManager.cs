@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject deathPanel;
     public static GameManager Instance;
 
+    public InputAction Controls;
+
     void Awake()
     {
         // If a GameManager already exists (e.g. from a previous scene load), 
@@ -73,6 +75,13 @@ public class GameManager : MonoBehaviour
                     CheckpointManager.Instance.InitiateSceneReset();
                 }
             //}
+        }
+    }
+    public void Quit(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

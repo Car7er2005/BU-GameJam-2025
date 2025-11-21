@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -189,6 +190,14 @@ public class PlayerMovement : MonoBehaviour
     public Animator GetAnimator()
     {
         return animator;
+    }
+
+    public void Quit(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
 }

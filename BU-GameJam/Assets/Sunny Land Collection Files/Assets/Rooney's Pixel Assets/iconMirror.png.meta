@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 707806a51e5e0b647a5df5b37eb8bba1
+guid: e41ba04696110e74aa4d39fbffe362b4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8707133783163546048
-    second: gem_0
+      213: 7656481797826772029
+    second: iconMirror_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gem_0
+      name: iconMirror_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
         y: 0
-        width: 15
-        height: 13
+        width: 25
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 046dbb2e4fb0a2780800000000000000
-      internalID: -8707133783163546048
+      spriteID: d3c75bc11a9414a60800000000000000
+      internalID: 7656481797826772029
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      gem_0: -8707133783163546048
+      iconMirror_0: 7656481797826772029
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
